@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		363A94F12A7132A600C6DF2F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A94F02A7132A600C6DF2F /* Movie.swift */; };
 		368404C22A6A6FC7003B7D95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368404C12A6A6FC7003B7D95 /* AppDelegate.swift */; };
 		368404C42A6A6FC7003B7D95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368404C32A6A6FC7003B7D95 /* SceneDelegate.swift */; };
 		368404C62A6A6FC7003B7D95 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368404C52A6A6FC7003B7D95 /* MainTabBarViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		363A94F02A7132A600C6DF2F /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		368404BE2A6A6FC7003B7D95 /* Netflix Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		368404C12A6A6FC7003B7D95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		368404C32A6A6FC7003B7D95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		368404E32A6E7DF8003B7D95 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				363A94F02A7132A600C6DF2F /* Movie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			files = (
 				368404DA2A6AAED2003B7D95 /* HomeViewController.swift in Sources */,
 				368404E92A6E9167003B7D95 /* HeroHeaderUIView.swift in Sources */,
+				363A94F12A7132A600C6DF2F /* Movie.swift in Sources */,
 				368404DE2A6AAF9F003B7D95 /* SearchViewController.swift in Sources */,
 				368404CC2A6A6FC7003B7D95 /* Netflix_Clone.xcdatamodeld in Sources */,
 				368404C62A6A6FC7003B7D95 /* MainTabBarViewController.swift in Sources */,

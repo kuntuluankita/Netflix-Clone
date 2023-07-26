@@ -33,6 +33,9 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homefeedTable.tableHeaderView = headerView
         
+        
+        getTrandingMovies()
+        
     }
     
     private func configureNavbar() {
@@ -55,7 +58,15 @@ class HomeViewController: UIViewController {
         homefeedTable.frame = view.bounds
 
     }
+    
+    private func getTrandingMovies() {
+        APICaller.shared.getTrendingMovies { _ in
+            
+        }
+    }
 }
+
+
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -95,9 +106,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return sectionTitles[section]
     }
     
-    
-    
-    
+ 
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let defaultoffset = view.safeAreaInsets.top
