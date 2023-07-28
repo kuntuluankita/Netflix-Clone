@@ -33,14 +33,14 @@ class APICaller {
                 completion(.success(results.results))
             }
             catch {
-                completion(.failure(error))
+                completion(.failure(APIError.failedToGetData))
             }
         }
         
         task.resume()
     }
     
-    func getTrandingTvs(completion:@escaping (Result<[Tv], Error>)-> Void) {
+    func getTrandingTvs(completion:@escaping (Result<[Movie], Error>)-> Void) {
         
         guard let  url = URL(string: "\(Constants.baseURL)/3/trending/tv/day?api_key=\(Constants.API_Key)")
         else {
@@ -55,11 +55,11 @@ class APICaller {
             }
             
             do {
-                let results = try JSONDecoder().decode(TrendingTvResponce.self, from: data)
-                print(results)
+                let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+                completion(.success(results.results))
             }
             catch {
-                print(error.localizedDescription)
+                completion(.failure(APIError.failedToGetData))
             }
         } 
         
@@ -82,10 +82,10 @@ class APICaller {
             
             do {
                 let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
-                print(results)
+                completion(.success(results.results))
             }
             catch {
-                print(error.localizedDescription)
+                completion(.failure(APIError.failedToGetData))
             }
         }
         
@@ -108,10 +108,10 @@ class APICaller {
             
             do {
                 let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
-                print(results)
+                completion(.success(results.results))
             }
             catch {
-                print(error.localizedDescription)
+                completion(.failure(APIError.failedToGetData))
             }
         }
         
@@ -134,10 +134,10 @@ class APICaller {
             
             do {
                 let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
-                print(results)
+                completion(.success(results.results))
             }
             catch {
-                print(error.localizedDescription)
+                completion(.failure(APIError.failedToGetData))
             }
         }
         

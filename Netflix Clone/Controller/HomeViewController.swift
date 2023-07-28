@@ -7,6 +7,15 @@
 
 import UIKit
 
+enum Section:Int {
+    case TrendingMovies = 0
+    case TrendingTv = 1
+    case Popular = 2
+    case Upcoming = 3
+    case Toprated = 4 
+    
+}
+
 class HomeViewController: UIViewController {
     
     let sectionTitles:[String] = ["Trending Movies","Trending TV", "Popular","Top Rated","Upcoming Movies"]
@@ -33,9 +42,6 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homefeedTable.tableHeaderView = headerView
         
-        
-        fetchData()
-        
     }
     
     private func configureNavbar() {
@@ -56,37 +62,9 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homefeedTable.frame = view.bounds
+    }
 
-    }
-    
-    private func fetchData() {
-//        APICaller.shared.getTrendingMovies { results in
-//            switch results {
-//
-//            case.success(let movies):
-//                print(movies)
-//            case.failure(let error):
-//                print(error)
-//            }
-   //     }
-//        APICaller.shared.getTrandingTvs { results in
-//
-//        }
-//        APICaller.shared.getUpcomingMovie { results in
-//
-//        }
-        
-//        APICaller.shared.getPopularMovie { results in
-//
-//        }
-        
-        APICaller.shared.getTopRated { results in
-            
-        }
-    }
 }
-
-
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -98,12 +76,73 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
         
     }
-    
+   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell
         else {
             return UITableViewCell()
         }
+        
+        switch indexPath.section {
+        case Section.TrendingMovies.rawValue:
+          
+            APICaller.shared.getTrendingMovies {result in
+                switch result {
+                case.success(let titles):
+                    cell.configure(with: titles)
+                case.failure(let error):
+                    print(error.localizedDescription)
+                    
+                }
+            }
+            
+        case Section.TrendingTv.rawValue:
+            
+            APICaller.shared.getTrandingTvs{result in
+                switch result {
+                case.success(let titles):
+//                    print("titles")
+                    cell.configure(with: titles)
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Section.Popular.rawValue:
+                    
+            APICaller.shared.getPopularMovie{result in
+                switch result {
+                case.success(let titles):
+                    cell.configure(with: titles)
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        
+        case Section.Upcoming.rawValue:
+                           
+            APICaller.shared.getUpcomingMovie{result in
+                switch result {
+                case.success(let titles):
+                    cell.configure(with: titles)
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+       
+        case Section.Toprated.rawValue:
+                                   
+            APICaller.shared.getTopRated{result in
+                switch result {
+                case.success(let titles):
+                    cell.configure(with: titles)
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        default:
+            return UITableViewCell()
+        }
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
