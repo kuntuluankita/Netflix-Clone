@@ -12,7 +12,7 @@ struct TrendingMoviesResponse: Codable {
 }
 
 struct Movie: Codable {
-    let adult: Bool
+    let adult: Bool = false
     let backdropPath: String?
     let id: Int
     let title, originalLanguage, originalTitle, overview: String?

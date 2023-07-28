@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let sectionTitles:[String] = ["Trending Movies","Popular", "Trending TV", "Top Rated","Upcoming Movies"]
+    let sectionTitles:[String] = ["Trending Movies","Trending TV", "Popular","Top Rated","Upcoming Movies"]
     
     
     private let homefeedTable: UITableView = {
@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
         homefeedTable.tableHeaderView = headerView
         
         
-        getTrandingMovies()
+        fetchData()
         
     }
     
@@ -59,8 +59,28 @@ class HomeViewController: UIViewController {
 
     }
     
-    private func getTrandingMovies() {
-        APICaller.shared.getTrendingMovies { _ in
+    private func fetchData() {
+//        APICaller.shared.getTrendingMovies { results in
+//            switch results {
+//
+//            case.success(let movies):
+//                print(movies)
+//            case.failure(let error):
+//                print(error)
+//            }
+   //     }
+//        APICaller.shared.getTrandingTvs { results in
+//
+//        }
+//        APICaller.shared.getUpcomingMovie { results in
+//
+//        }
+        
+//        APICaller.shared.getPopularMovie { results in
+//
+//        }
+        
+        APICaller.shared.getTopRated { results in
             
         }
     }
@@ -99,7 +119,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y , width: 100, height: header.bounds.height)
         header.textLabel?.textColor = .white
-        header.textLabel?.text = header.textLabel?.text?.lowercased()
+        header.textLabel?.text = header.textLabel?.text?.capitalizerFirstLetter() 
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
