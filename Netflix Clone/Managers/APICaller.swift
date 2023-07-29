@@ -40,7 +40,7 @@ class APICaller {
         task.resume()
     }
     
-    func getTrandingTvs(completion:@escaping (Result<[Movie], Error>)-> Void) {
+    func getTrendingTvs(completion:@escaping (Result<[Movie], Error>)-> Void) {
         
         guard let  url = URL(string: "\(Constants.baseURL)/3/trending/tv/day?api_key=\(Constants.API_Key)")
         else {

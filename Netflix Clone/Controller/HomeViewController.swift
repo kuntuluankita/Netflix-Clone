@@ -98,7 +98,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
         case Section.TrendingTv.rawValue:
             
-            APICaller.shared.getTrandingTvs{result in
+            APICaller.shared.getTrendingTvs{result in
                 switch result {
                 case.success(let titles):
 //                    print("titles")
