@@ -176,7 +176,7 @@ class APICaller {
             return
         }
         
-        guard let url = URL(string: "\(Constants.baseURL)/3/search/movie?\(Constants.API_Key)query=\(queary)")
+        guard let url = URL(string: "\(Constants.baseURL)/3/search/movie?api_key=\(Constants.API_Key)&query=\(query)")
                 
         else {
             return
@@ -197,6 +197,7 @@ class APICaller {
                 completion(.failure(APIError.failedToGetData))
             }
         }
+        task.resume()
     }
 }
 
