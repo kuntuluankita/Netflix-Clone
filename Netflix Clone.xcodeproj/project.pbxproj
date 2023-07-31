@@ -14,6 +14,7 @@
 		363A94FE2A74340A00C6DF2F /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 363A94FD2A74340A00C6DF2F /* SDWebImageMapKit */; };
 		363A95002A74EE4E00C6DF2F /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A94FF2A74EE4E00C6DF2F /* TitleTableViewCell.swift */; };
 		363A95022A74FAF300C6DF2F /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A95012A74FAF300C6DF2F /* TitleViewModel.swift */; };
+		363A95042A77C35300C6DF2F /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A95032A77C35300C6DF2F /* SearchResultViewController.swift */; };
 		368404C22A6A6FC7003B7D95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368404C12A6A6FC7003B7D95 /* AppDelegate.swift */; };
 		368404C42A6A6FC7003B7D95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368404C32A6A6FC7003B7D95 /* SceneDelegate.swift */; };
 		368404C62A6A6FC7003B7D95 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368404C52A6A6FC7003B7D95 /* MainTabBarViewController.swift */; };
@@ -35,6 +36,7 @@
 		363A94F82A73ECDC00C6DF2F /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		363A94FF2A74EE4E00C6DF2F /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		363A95012A74FAF300C6DF2F /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
+		363A95032A77C35300C6DF2F /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		368404BE2A6A6FC7003B7D95 /* Netflix Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		368404C12A6A6FC7003B7D95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		368404C32A6A6FC7003B7D95 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		363A95052A77C3A000C6DF2F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				368404C52A6A6FC7003B7D95 /* MainTabBarViewController.swift */,
+				368404D92A6AAED2003B7D95 /* HomeViewController.swift */,
+				368404DB2A6AAF35003B7D95 /* UpComingViewController.swift */,
+				368404DD2A6AAF9F003B7D95 /* SearchViewController.swift */,
+				368404DF2A6AAFD5003B7D95 /* DownloadViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		363A95062A77C40B00C6DF2F /*  General */ = {
+			isa = PBXGroup;
+			children = (
+				363A95032A77C35300C6DF2F /* SearchResultViewController.swift */,
+			);
+			path = " General";
+			sourceTree = "<group>";
+		};
 		368404B52A6A6FC7003B7D95 = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +114,6 @@
 				368404D82A6AAEA5003B7D95 /* Controller */,
 				368404C12A6A6FC7003B7D95 /* AppDelegate.swift */,
 				368404C32A6A6FC7003B7D95 /* SceneDelegate.swift */,
-				368404C52A6A6FC7003B7D95 /* MainTabBarViewController.swift */,
 				368404CD2A6A6FC9003B7D95 /* Assets.xcassets */,
 				368404CF2A6A6FC9003B7D95 /* LaunchScreen.storyboard */,
 				368404D22A6A6FC9003B7D95 /* Info.plist */,
@@ -104,10 +125,8 @@
 		368404D82A6AAEA5003B7D95 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				368404D92A6AAED2003B7D95 /* HomeViewController.swift */,
-				368404DB2A6AAF35003B7D95 /* UpComingViewController.swift */,
-				368404DD2A6AAF9F003B7D95 /* SearchViewController.swift */,
-				368404DF2A6AAFD5003B7D95 /* DownloadViewController.swift */,
+				363A95062A77C40B00C6DF2F /*  General */,
+				363A95052A77C3A000C6DF2F /* Core */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -245,6 +264,7 @@
 				363A95002A74EE4E00C6DF2F /* TitleTableViewCell.swift in Sources */,
 				368406962A703083003B7D95 /* APICaller.swift in Sources */,
 				363A94F92A73ECDC00C6DF2F /* TitleCollectionViewCell.swift in Sources */,
+				363A95042A77C35300C6DF2F /* SearchResultViewController.swift in Sources */,
 				363A95022A74FAF300C6DF2F /* TitleViewModel.swift in Sources */,
 				368404E02A6AAFD5003B7D95 /* DownloadViewController.swift in Sources */,
 				368404C42A6A6FC7003B7D95 /* SceneDelegate.swift in Sources */,
@@ -384,8 +404,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A5CQCJSJJV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Netflix Clone/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -399,6 +421,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kuntulu.ankita.Netflix-Clone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -410,8 +433,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A5CQCJSJJV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Netflix Clone/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -425,6 +450,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kuntulu.ankita.Netflix-Clone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

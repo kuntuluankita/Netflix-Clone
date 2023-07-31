@@ -144,12 +144,63 @@ class APICaller {
         task.resume()
     }
     
+    func getDiscoverMovies(completion:@escaping (Result<[Movie], Error>)-> Void) {
+        guard let url = URL(string: "\(Constants.baseURL)/3/discover/movie?api_key=\(Constants.API_Key)&language=en-US&sort_by=popularuty.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_type=flatrate")
+        else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let  data = data, error == nil else {
+                return
+            }
+            
+            do {
+                let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+                completion(.success(results.results))
+            }
+            catch {
+                completion(.failure(APIError.failedToGetData))
+            }
+        }
+        
+        task.resume()
+    }
     
+    func search(with queary: String, completion:@escaping (Result<[Movie], Error>)-> Void) {
+        
+        guard let query = queary.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        else {
+            return
+        }
+        
+        guard let url = URL(string: "\(Constants.baseURL)/3/search/movie?\(Constants.API_Key)query=\(queary)")
+                
+        else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let  data = data, error == nil else {
+                return
+            }
+            
+            do {
+                let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+                completion(.success(results.results))
+            }
+            catch {
+                completion(.failure(APIError.failedToGetData))
+            }
+        }
+    }
 }
 
 
 
 
-// https://api.themoviedb.org/3/movie/upcoming?api_key=3c3895e1cba7ab9c182d5d7df5b89610
-// https://api.themoviedb.org/3/tv/popular?api_key=3c3895e1cba7ab9c182d5d7df5b89610
-//https://api.themoviedb.org/3/tv/top_rated?api_key=3c3895e1cba7ab9c182d5d7df5b89610
+
