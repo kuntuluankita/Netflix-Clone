@@ -41,8 +41,6 @@ class HomeViewController: UIViewController {
         
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homefeedTable.tableHeaderView = headerView
-        
-        navigationController?.pushViewController(TitlePreviewViewController(), animated: true)
     }
     
     private func configureNavbar() {
@@ -83,6 +81,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             return UITableViewCell()
         }
+        
+        cell.delegate = self
         
         switch indexPath.section {
         case Section.TrendingMovies.rawValue:
@@ -165,9 +165,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
     }
-    
- 
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let defaultoffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultoffset
@@ -176,4 +174,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
+extension HomeViewController:CollectionViewTableViewCellDelegate {
+    func CollectionViewTableViewCellDidTapCell(cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            let vc = TitlePreviewViewController()
+            vc.configure(with: viewModel)
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}
