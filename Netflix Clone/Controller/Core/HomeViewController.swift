@@ -18,6 +18,11 @@ enum Section:Int {
 
 class HomeViewController: UIViewController {
     
+    private var ramdomTrandingMovie: Movie?
+    private var headerView:HeroHeaderUIView?
+    
+    
+    
     let sectionTitles:[String] = ["Trending Movies","Trending TV", "Popular","Top Rated","Upcoming Movies"]
     
     
@@ -39,9 +44,29 @@ class HomeViewController: UIViewController {
         
         configureNavbar()
         
-        let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homefeedTable.tableHeaderView = headerView
+        configureHeroHeaderView()
     }
+    
+    private func configureHeroHeaderView() {
+        
+        APICaller.shared.getTrendingMovies { [weak self] result in
+            switch result {
+            case.success(let titles):
+                let selectedTitle = titles.randomElement()
+                
+                self?.ramdomTrandingMovie = selectedTitle
+                
+                self?.headerView?.configure(with: TitleViewModel(titleName: selectedTitle?.originalTitle ?? "", posterURL: selectedTitle?.posterPath ?? ""))
+           
+            case.failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
     
     private func configureNavbar() {
         var image = UIImage(named: "netflixLogo")
@@ -102,7 +127,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             APICaller.shared.getTrendingTvs{result in
                 switch result {
                 case.success(let titles):
-//                    print("titles")
                     cell.configure(with: titles)
                 case.failure(let error):
                     print(error.localizedDescription)

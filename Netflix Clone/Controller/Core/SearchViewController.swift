@@ -88,7 +88,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
          }
          
          let title = titles[indexPath.row ]
-         let model = TitleViewModel(titleName: title.originalTitle ?? "", posterURL: title.posterPath ?? "")
+         _ = TitleViewModel(titleName: title.originalTitle ?? "", posterURL: title.posterPath ?? "")
          cell.configure(with: TitleViewModel(titleName: title.originalTitle ?? "", posterURL: title.posterPath ?? ""))
  
          return cell
@@ -97,10 +97,38 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
          return 140
      }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let title = titles[indexPath.row]
+        
+        guard let titleName = title.originalTitle ?? title.originalLanguage
+        else {
+            return
+        }
+        
+        
+        APICaller.shared.getMovie(with: titleName) { [weak self] result in
+            switch result {
+            case.success(let videoElement):
+                DispatchQueue.main.async {
+                    let vc = TitlePreviewViewController()
+                      vc.configure(with: TitlePreviewViewModel(title: titleName, youTubeView: videoElement, titleOverView: title.overview ?? ""))
+                      self?.navigationController?.pushViewController( vc, animated: true)
+                }
+              
+                
+            case.failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
      
  }
 
-extension SearchViewController: UISearchResultsUpdating {
+extension SearchViewController: UISearchResultsUpdating, SearchResultViewControllerDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
@@ -111,6 +139,8 @@ extension SearchViewController: UISearchResultsUpdating {
               let resultsController = searchController.searchResultsController as? SearchResultViewController else {
             return
         }
+        
+        resultsController.delegate = self
         
         APICaller.shared.search(with: query) { result in
             DispatchQueue.main.async {
